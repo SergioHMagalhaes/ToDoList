@@ -1,0 +1,85 @@
+.container {
+	width: 52.1rem;
+	margin: auto;
+	.searchBar {
+		height: 3.3rem;
+		display: flex;
+		gap: 0.5rem;
+		input {
+			height: 100%;
+			width: 46rem;
+			background-color: var(--gray-500);
+			color: var(--gray-100);
+			border: none;
+			border-radius: 8px;
+			padding: 1rem;
+			&::placeholder {
+				color: var(--gray-300);
+			}
+		}
+
+		button {
+			width: 5.6rem;
+			background-color: var(--blue-dark);
+			color: var(--gray-100);
+			font-weight: bold;
+			border-radius: 8px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.1rem;
+			border: none;
+		}
+	}
+
+	.tasks {
+		margin: auto;
+		margin-top: 4rem;
+	
+		.info {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.created {
+				font-weight: bold;
+				color: var(--blue);
+				display: flex;
+			}
+			.completed {
+				font-weight: bold;
+				color: var(--purple);
+				display: flex;
+			}
+			.counter {
+				text-align: center;
+				font-weight: bold;
+				font-size: 12px;
+				width: 1.5rem;
+				background-color: var(--gray-400);
+				color: var(--gray-200);
+				border-radius: 50px;
+				margin-left: 0.5rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+	
+		}
+
+		.empty {
+			margin-top: 1.5rem;
+			border-top: 1px solid var(--gray-400);
+			border-radius: 15px;
+			text-align: center;
+			color: var(--gray-300);
+			.emptyContent {
+				margin: 4rem 0;
+				p:first-of-type {
+					margin-top: 0.5rem;
+				}
+			}
+		}
+	}
+
+}
+
