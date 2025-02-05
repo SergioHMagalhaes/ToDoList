@@ -1,32 +1,51 @@
-import styles from './NewTask.module.scss'
+
 import { PlusCircle } from "@phosphor-icons/react";
+import { v4 as uuidv4 } from 'uuid';
+import { FormEvent, useState } from 'react';
+
+import styles from './NewTask.module.scss'
 import { TaskList } from './TaskList';
 import { ITask } from '../types/Task';
 
+
 export function NewTask() {
-	const taskList: ITask[]  = [
-		{
-			id: 1,
-			title: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit mollitia nisi natus nemo, temporibus distinctio atque? Quod ducimus labore natus sit. Dolorum accusamus est vitae hic, delectus in adipisci explicabo.',
-			isCompleted: true
-		},
-		{
-			id: 2,
-			title: 'Estudar C#',
+	
+	const [taskList, setTaskList] = useState<ITask[]>([]);
+	const [newTaskText, setNewTaskText] = useState('')
+	
+	function handleCreateTask (event: FormEvent) {
+		event.preventDefault();
+		
+		const newTask: ITask = {
+			id: uuidv4(),
+			title: newTaskText,
 			isCompleted: false
-		},
-		{
-			id: 3,
-			title: 'Criar site',
-			isCompleted: false
-		}
-	];
+		};
+		setTaskList([...taskList, newTask]);
+		setNewTaskText('');
+	}
+
+	function handleNewTaskText (event: FormEvent<HTMLInputElement>) {
+		event.currentTarget.setCustomValidity('');
+		setNewTaskText(event.currentTarget.value);
+	}
+
+	function handleNewTaskInvalid (event: FormEvent<HTMLInputElement>) {
+		event.currentTarget.setCustomValidity('Digite uma tarefa válida');
+	}
 
 	return (
 		<div className={styles.container}>
-			<form>
+			<form onSubmit={handleCreateTask}>
 				<div className={styles.searchBar}>
-					<input type="text" placeholder="Adicione uma nova tarefa" />
+					<input 
+						type="text"
+						value={newTaskText}
+						placeholder="Adicione uma nova tarefa"
+						onChange={handleNewTaskText}
+						onInvalid={handleNewTaskInvalid}
+						required
+					/>
 					<button type="submit">
 						Criar <PlusCircle size={20} weight="bold"/>
 					</button>
