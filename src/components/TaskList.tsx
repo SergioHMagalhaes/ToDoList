@@ -14,10 +14,13 @@ function Empty () {
 	)
 }
 
-
-export function TaskList({ tasks, onDeleteTask }: ITaskList) {
-	function handleDeleteComment(taskId: string) {
+export function TaskList({ tasks, onDeleteTask, onCompleteTask }: ITaskList) {
+	function handleDeleteTask(taskId: string) {
 		onDeleteTask(taskId);
+	}
+
+	function handleCompleteTask(taskId: string) {
+		onCompleteTask(taskId);
 	}
 
 	if (!tasks.length) {
@@ -30,14 +33,18 @@ export function TaskList({ tasks, onDeleteTask }: ITaskList) {
 				return (
 					<div key={task.id} className={styles.taskList}>
 							<div className={styles.checkbox}>
-							<input type="checkbox" id={`task-${task.id}`} />
+							<input
+								type="checkbox" 
+								id={`task-${task.id}`}
+								onClick={() => handleCompleteTask(task.id)}
+							/>
 							<label htmlFor={`task-${task.id}`}></label>
 						</div>
 						<p className={`${styles.name} ${task.isCompleted ? styles.completed : ''}`}>
 							{task.title}
 						</p>
 						<button
-							onClick={() => handleDeleteComment(task.id)}
+							onClick={() => handleDeleteTask(task.id)}
 							title="Deletar comentário"
 						>
 							<Trash size={20} weight="bold"/>

@@ -8,4 +8,5 @@ export interface ITask {
 export interface ITaskList {
 	tasks: ITask[];
 	onDeleteTask: (taskId: string) => void;
+	onCompleteTask: (taskId: string) => void;
 }

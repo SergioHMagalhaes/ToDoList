@@ -37,6 +37,16 @@ export function NewTask() {
 		setTaskList(updatedTasks);
 	}
 
+	function completeTask (taskId: string) {
+		const updatedTasks = taskList.map(task => {
+			if (task.id === taskId) {
+				task.isCompleted = !task.isCompleted;
+			}
+			return task;
+		});
+		setTaskList(updatedTasks);
+	}
+
 	return (
 		<div className={styles.container}>
 			<form onSubmit={handleCreateTask}>
@@ -61,7 +71,11 @@ export function NewTask() {
 					<p className={styles.completed}>Concluídas <div className={styles.counter}>0</div></p>
 				</div>
 
-				<TaskList tasks={taskList} onDeleteTask={deleteTask} />
+				<TaskList 
+					tasks={taskList}
+					onDeleteTask={deleteTask}
+					onCompleteTask={completeTask}
+				/>
 			</div>
 		</div>
 	)
