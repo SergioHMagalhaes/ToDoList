@@ -1,6 +1,19 @@
+import styles from './App.module.scss'
+import logo from './assets/logo.svg'
+import { NewTask } from './components/NewTask'
+
 function App() {
   return (
-    <h1>ToDo List</h1>
+    <div>
+		<header className={styles.header}>
+			<img src={logo} alt="Logo ToDo" />
+		</header>
+
+		<div className={styles.container}>
+			<NewTask />
+		</div>
+		
+	</div>
   )
 }
 
