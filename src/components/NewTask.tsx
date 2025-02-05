@@ -67,8 +67,18 @@ export function NewTask() {
 
 			<div className={styles.tasks}>
 				<div className={styles.info}>
-					<p className={styles.created}>Tarefas criadas <div className={styles.counter}>0</div></p>
-					<p className={styles.completed}>Concluídas <div className={styles.counter}>0</div></p>
+					<p className={styles.created}>
+						Tarefas criadas 
+						<div className={styles.counter}>{taskList.length}</div>
+					</p>
+					<p className={styles.completed}>
+						Concluídas 
+						<div className={styles.counter}>
+							{taskList.reduce((prev, curr) => {
+								return curr.isCompleted ? prev + 1 : prev
+							}, 0)} de {taskList.length}
+						</div>
+					</p>
 				</div>
 
 				<TaskList 

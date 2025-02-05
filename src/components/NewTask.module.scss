@@ -40,16 +40,6 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			.created {
-				font-weight: bold;
-				color: var(--blue);
-				display: flex;
-			}
-			.completed {
-				font-weight: bold;
-				color: var(--purple);
-				display: flex;
-			}
 			.counter {
 				text-align: center;
 				font-weight: bold;
@@ -63,7 +53,19 @@
 				justify-content: center;
 				align-items: center;
 			}
-	
+			.created {
+				font-weight: bold;
+				color: var(--blue);
+				display: flex;
+			}
+			.completed {
+				font-weight: bold;
+				color: var(--purple);
+				display: flex;
+				.counter {
+					width: 3.5rem;
+				}
+			}
 		}
 	}
 
