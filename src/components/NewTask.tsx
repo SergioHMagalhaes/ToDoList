@@ -1,12 +1,10 @@
-
 import { PlusCircle } from "@phosphor-icons/react";
-import { v4 as uuidv4 } from 'uuid';
 import { FormEvent, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-import styles from './NewTask.module.scss'
-import { TaskList } from './TaskList';
 import { ITask } from '../types/Task';
-
+import { TaskList } from './TaskList';
+import styles from './NewTask.module.scss'
 
 export function NewTask() {
 	
@@ -34,6 +32,11 @@ export function NewTask() {
 		event.currentTarget.setCustomValidity('Digite uma tarefa válida');
 	}
 
+	function deleteTask (taskId: string) {
+		const updatedTasks = taskList.filter(task => task.id !== taskId);
+		setTaskList(updatedTasks);
+	}
+
 	return (
 		<div className={styles.container}>
 			<form onSubmit={handleCreateTask}>
@@ -58,7 +61,7 @@ export function NewTask() {
 					<p className={styles.completed}>Concluídas <div className={styles.counter}>0</div></p>
 				</div>
 
-				<TaskList tasks={taskList} />
+				<TaskList tasks={taskList} onDeleteTask={deleteTask} />
 			</div>
 		</div>
 	)

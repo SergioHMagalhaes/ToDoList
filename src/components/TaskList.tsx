@@ -14,7 +14,12 @@ function Empty () {
 	)
 }
 
-export function TaskList({ tasks }: ITaskList) {
+
+export function TaskList({ tasks, onDeleteTask }: ITaskList) {
+	function handleDeleteComment(taskId: string) {
+		onDeleteTask(taskId);
+	}
+
 	if (!tasks.length) {
 		return <Empty />;
 	}
@@ -31,7 +36,10 @@ export function TaskList({ tasks }: ITaskList) {
 						<p className={`${styles.name} ${task.isCompleted ? styles.completed : ''}`}>
 							{task.title}
 						</p>
-						<button>
+						<button
+							onClick={() => handleDeleteComment(task.id)}
+							title="Deletar comentário"
+						>
 							<Trash size={20} weight="bold"/>
 						</button>
 					</div>
